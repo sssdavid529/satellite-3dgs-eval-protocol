@@ -62,10 +62,11 @@ def main():
     L += [r"\bottomrule", r"\end{tabular}"]
     (OUTDIR / "t1_variance.tex").write_text("\n".join(L), encoding="utf-8")
 
-    # ---- T2: paired deltas ----
+    # ---- T2: paired deltas (with two-sided paired t-test p-values) ----
+    from scipy import stats as sps
     L = [r"% AUTO-GENERATED -- do not edit",
-         r"\begin{tabular}{llrrl}", r"\toprule",
-         r"AOI & metric & mean $\Delta$ & std & improved \\", r"\midrule"]
+         r"\begin{tabular}{llrrll}", r"\toprule",
+         r"AOI & metric & mean $\Delta$ & std & improved & $p$ \\", r"\midrule"]
     for s in SCENES:
         seeds = sorted({int(k.split("_s")[1]) for k in data[s] if re.fullmatch(r"baseline_s\d+", k)})
         first = True
@@ -81,9 +82,14 @@ def main():
             mu = st.mean(ds)
             sd = st.stdev(ds) if len(ds) > 1 else 0.0
             imp = sum(1 for v in ds if v < 0)
+            if len(ds) >= 3:
+                _, pval = sps.ttest_1samp(ds, 0.0)
+                pcell = f"{pval:.2f}"
+            else:
+                pcell = "---"
             scene_cell = tex_escape(s) if first else ""
             first = False
-            L.append(f"{scene_cell} & {key} & {mu:+.3f} & {sd:.3f} & {imp}/{len(ds)} \\\\")
+            L.append(f"{scene_cell} & {key} & {mu:+.3f} & {sd:.3f} & {imp}/{len(ds)} & {pcell} \\\\")
         if not first:
             L.append(r"\addlinespace[2pt]")
     L += [r"\bottomrule", r"\end{tabular}"]
@@ -113,7 +119,7 @@ def main():
     L = [r"% AUTO-GENERATED -- do not edit",
          r"\begin{tabular}{llccccc}", r"\toprule",
          r"AOI & method & overall & water & building & weak & err.top20 \\", r"\midrule"]
-    NAME = {"baseline_s1337": "EOGS++ (s1337)", "eogsv1": "EOGS",
+    NAME = {"baseline_s1337": "EOGS++ (s1337)", "eogsv1": "EOGS (default seed)",
             "satnerf_ds": "Sat-NeRF+DS ckpt", "satnerf": "Sat-NeRF ckpt"}
     for s in SCENES:
         if not cross[s]:
@@ -127,6 +133,14 @@ def main():
             first = False
             L.append(f"{scene_cell} & {NAME[meth]} & {f3(v['overall'])} & {f3(v['water'])} & "
                      f"{f3(v['building'])} & {f3(v['weak'])} & {f3(v['err20'])} \\\\")
+        v1fam = {k: v for k, v in cross[s].items() if re.fullmatch(r"eogsv1(_s\d+)?", k)}
+        if len(v1fam) > 1:
+            cells = []
+            for key in ("overall", "water", "building", "weak", "err20"):
+                vals = [v[key] for v in v1fam.values() if v[key] is not None]
+                cells.append("---" if not vals else
+                             f"{st.mean(vals):.3f}$\\pm${(st.stdev(vals) if len(vals) > 1 else 0):.3f}")
+            L.append(f" & EOGS ({len(v1fam)} seeds) & " + " & ".join(cells) + r" \\")
         fam = {k: v for k, v in data[s].items() if re.fullmatch(r"baseline_s\d+", k)}
         if fam:
             cells = []
