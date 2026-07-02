@@ -1,0 +1,170 @@
+[
+  {
+    "scene": "JAX_260",
+    "error_top20": {
+      "pixels": 51714,
+      "partial_good_ratio": 0.9976215338206288,
+      "all_weak_ratio": 0.002378466179371157,
+      "mean_good_views": 8.584367752075195,
+      "mean_error": 4.636229515075684
+    },
+    "weak_proxy_top20": {
+      "pixels": 50885,
+      "partial_good_ratio": 0.904372604893387,
+      "all_weak_ratio": 0.09562739510661294,
+      "mean_good_views": 1.3660213947296143,
+      "mean_error": 1.3495075702667236
+    },
+    "strong_reference": {
+      "pixels": 829,
+      "partial_good_ratio": 1.0,
+      "all_weak_ratio": 0.0,
+      "mean_good_views": 15.156815528869629,
+      "mean_error": 0.6477006077766418
+    }
+  },
+  {
+    "scene": "JAX_214",
+    "error_top20": {
+      "pixels": 52224,
+      "partial_good_ratio": 0.9889322916666666,
+      "all_weak_ratio": 0.011067708333333334,
+      "mean_good_views": 8.487534523010254,
+      "mean_error": 6.263144493103027
+    },
+    "weak_proxy_top20": {
+      "pixels": 52192,
+      "partial_good_ratio": 0.938534641324341,
+      "all_weak_ratio": 0.0614653586756591,
+      "mean_good_views": 2.8519504070281982,
+      "mean_error": 1.8342500925064087
+    },
+    "strong_reference": {
+      "pixels": 914,
+      "partial_good_ratio": 1.0,
+      "all_weak_ratio": 0.0,
+      "mean_good_views": 20.551422119140625,
+      "mean_error": 0.5760564804077148
+    }
+  },
+  {
+    "scene": "JAX_004",
+    "error_top20": {
+      "pixels": 51815,
+      "partial_good_ratio": 0.9683296342757889,
+      "all_weak_ratio": 0.031670365724211134,
+      "mean_good_views": 4.274495601654053,
+      "mean_error": 4.8431220054626465
+    },
+    "weak_proxy_top20": {
+      "pixels": 49878,
+      "partial_good_ratio": 0.7704198243714664,
+      "all_weak_ratio": 0.2295801756285336,
+      "mean_good_views": 1.18038010597229,
+      "mean_error": 1.5809400081634521
+    },
+    "strong_reference": {
+      "pixels": 536,
+      "partial_good_ratio": 1.0,
+      "all_weak_ratio": 0.0,
+      "mean_good_views": 9.309701919555664,
+      "mean_error": 0.7598114013671875
+    }
+  },
+  {
+    "scene": "JAX_068",
+    "error_top20": {
+      "pixels": 52225,
+      "partial_good_ratio": 0.9853901388224031,
+      "all_weak_ratio": 0.014609861177596937,
+      "mean_good_views": 6.751383304595947,
+      "mean_error": 3.540111541748047
+    },
+    "weak_proxy_top20": {
+      "pixels": 52160,
+      "partial_good_ratio": 0.9004409509202455,
+      "all_weak_ratio": 0.0995590490797546,
+      "mean_good_views": 1.9786235094070435,
+      "mean_error": 0.9126885533332825
+    },
+    "strong_reference": {
+      "pixels": 357,
+      "partial_good_ratio": 1.0,
+      "all_weak_ratio": 0.0,
+      "mean_good_views": 16.831932067871094,
+      "mean_error": 0.3643285930156708
+    }
+  },
+  {
+    "scene": "IARPA_001",
+    "error_top20": {
+      "pixels": 144186,
+      "partial_good_ratio": 0.9984187091673256,
+      "all_weak_ratio": 0.001581290832674462,
+      "mean_good_views": 10.355332374572754,
+      "mean_error": 5.204192638397217
+    },
+    "weak_proxy_top20": {
+      "pixels": 143941,
+      "partial_good_ratio": 0.9868279364461828,
+      "all_weak_ratio": 0.01317206355381719,
+      "mean_good_views": 4.599474906921387,
+      "mean_error": 1.546295166015625
+    },
+    "strong_reference": {
+      "pixels": 31,
+      "partial_good_ratio": 1.0,
+      "all_weak_ratio": 0.0,
+      "mean_good_views": 11.45161247253418,
+      "mean_error": 1.1029882431030273
+    }
+  },
+  {
+    "scene": "IARPA_002",
+    "error_top20": {
+      "pixels": 143713,
+      "partial_good_ratio": 0.9961242197991831,
+      "all_weak_ratio": 0.0038757802008169057,
+      "mean_good_views": 8.464690208435059,
+      "mean_error": 6.882609844207764
+    },
+    "weak_proxy_top20": {
+      "pixels": 143637,
+      "partial_good_ratio": 0.9789051567493056,
+      "all_weak_ratio": 0.02109484325069446,
+      "mean_good_views": 3.9773247241973877,
+      "mean_error": 2.351508378982544
+    },
+    "strong_reference": {
+      "pixels": 83,
+      "partial_good_ratio": 1.0,
+      "all_weak_ratio": 0.0,
+      "mean_good_views": 18.74698829650879,
+      "mean_error": 1.0276150703430176
+    }
+  },
+  {
+    "scene": "IARPA_003",
+    "error_top20": {
+      "pixels": 144227,
+      "partial_good_ratio": 0.8473656111546382,
+      "all_weak_ratio": 0.15263438884536182,
+      "mean_good_views": 5.462125778198242,
+      "mean_error": 7.632480621337891
+    },
+    "weak_proxy_top20": {
+      "pixels": 142677,
+      "partial_good_ratio": 0.8031217365097387,
+      "all_weak_ratio": 0.19687826349026122,
+      "mean_good_views": 2.0544025897979736,
+      "mean_error": 4.570781230926514
+    },
+    "strong_reference": {
+      "pixels": 408,
+      "partial_good_ratio": 1.0,
+      "all_weak_ratio": 0.0,
+      "mean_good_views": 18.47549057006836,
+      "mean_error": 0.5188915133476257
+    }
+  }
+]

@@ -1,0 +1,25 @@
+diff --git a/src/gaussiansplatting/utils/general_utils.py b/src/gaussiansplatting/utils/general_utils.py
+index 541c082..ae7670c 100644
+--- a/src/gaussiansplatting/utils/general_utils.py
++++ b/src/gaussiansplatting/utils/general_utils.py
+@@ -11,6 +11,7 @@
+ 
+ import torch
+ import sys
++import os
+ from datetime import datetime
+ import numpy as np
+ import random
+@@ -127,7 +128,9 @@ def safe_state(silent):
+ 
+     sys.stdout = F(silent)
+ 
+-    random.seed(0)
+-    np.random.seed(0)
+-    torch.manual_seed(0)
++    _seed = int(os.environ.get("EOGS_SEED", "0"))
++    print("[EOGS_SEED]", _seed)
++    random.seed(_seed)
++    np.random.seed(_seed)
++    torch.manual_seed(_seed)
+     torch.cuda.set_device(torch.device("cuda:0"))
