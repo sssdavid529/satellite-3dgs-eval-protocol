@@ -3,7 +3,7 @@
 plus the one-factor TSDF arm (EOGS++ with TSDF extracted from the SAME
 checkpoints, seed-paired against EOGS++ without TSDF).
 
-Reads D:/new/analysis/out_pair/<S>/<S>_metrics.csv
+Reads <repo>/results/out_pair/<S>/<S>_metrics.csv
 (6 eogspp_* + 6 eogsv1_* + 6 eogspp_tsdf_* rows per scene).
 Emits latex/tables/t5_pair.tex and console numbers for Sec. VI.
 """
@@ -14,8 +14,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-BASE = Path("D:/new/analysis")
-OUTDIR = Path("D:/new/latex/tables")
+BASE = Path(__file__).resolve().parents[1] / "results"
+OUTDIR = Path(__file__).resolve().parents[1] / "tables_out"
 SCENES = ["JAX_260", "JAX_214", "JAX_004", "JAX_068", "IARPA_001", "IARPA_002", "IARPA_003"]
 REGIONS = [("overall", "overall_mae"), ("water", "water_cls9_mae"),
            ("building", "building_cls6_mae"), ("weak", "weak_proxy_top20_mae")]

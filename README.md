@@ -1,40 +1,96 @@
-# Unmasked Multi-Seed Evaluation Protocol for Satellite 3DGS — Release Package
+# Unmasked Multi-Seed Evaluation Protocol for Satellite 3DGS
 
-Companion code & data for: *On the Reliability of DSM Improvements in Satellite 3D Gaussian Splatting:
-An Unmasked Multi-Seed Evaluation Protocol for Weak-Evidence Regions* (under review).
+Companion code and per-run results for the paper
+*On the Reliability of DSM Improvements in Satellite 3D Gaussian Splatting: An Unmasked
+Multi-Seed Evaluation Protocol for Weak-Evidence Regions* (under review, 2026).
 
-> 发布策略:GitHub 公开仓库(投稿时在 Data Availability 给 URL;JSTARS 单盲无需匿名)。
-> 打包时从远端 `/root/autodl-tmp/eogs/eval_tools/` 与本地 `D:\new\analysis\` 收集,按下述清单核对。
+The protocol evaluates registered DSMs from any reconstruction method over **unmasked
+semantic regions**, a **truth-free weak-evidence proxy region**, and an evaluation-only
+high-error diagnostic guarded by a **seed-swap null control**, with **multi-seed
+reporting** (paired per-seed differences, sign consistency, significance tests). Every
+number in the paper's tables is generated from the CSVs in this repository — no manual
+transcription.
 
-## Contents
+## Repository layout
 
-### `protocol/` — 评估工具链(论文 §III 的参考实现)
-| 文件 | 作用 | 源位置 |
-|---|---|---|
-| `eval_pairs_generic.py` | 统一区域化评估(任意 DSM 集合;MAE/RMSE/completeness;锚定 weak-proxy;err-top20) | 远端 eval_tools |
-| `run_all_evals.py` | 全场景批量评估(EOGS 系全网格组 + 跨方法交集组分离) | 远端 eval_tools |
-| `analyze_all.py` | 汇总 → T1–T6 markdown/JSON | 远端 eval_tools |
-| `s3_null_control.py` | seed-swap null 对照(式 (2)) | 远端 eval_tools |
-| `s6_phase0_stats.py` | 多时相互补诊断统计 | 远端 eval_tools |
-| `gen_latex_tables.py` | CSV → 论文 LaTeX 表(数字溯源) | 本地 analysis |
-| `weak_proxy_lib.py` | `compute_weak_proxy/region_metrics`(自 EOGS2 phase3 模块拷入,自包含) | 已打包 |
+```
+protocol/    reference implementation of the protocol (paper Sec. III)
+casestudy/   exact training / extraction scripts behind every run set in the paper
+results/     per-run regional metrics for all evaluated DSMs, on all three grids
+tables_out/  output of the table generators (created on run)
+```
 
-### `results/` — 全部逐种子指标
-- `out/<AOI>/<AOI>_metrics.csv` × 7(EOGS 系全网格:baseline/ours/nostruct × seeds,含 rmse/comp1m)
-- `out_cross/<AOI>/<AOI>_metrics.csv`(EOGS/EOGS++/Sat-NeRF ckpt/EOGS-v1 多种子,交集网格+coverage meta)
-- `s3_null_control.json`、`s6_phase0_stats_7scenes.json`、`summary_tables.{md,json}`
-- anchor weak-proxy rasters(`weak_proxy_rasters/*.tif`,~250MB → 用 GitHub Release 附件或 Zenodo DOI)
+### `protocol/`
 
-### `casestudy/` — 被研究方法的可复现配置
-- `run_*.sh` 全套(q1_seeds/q1bc/q1d/s2/m2a/q1e)+ phase1b-default 环境变量表
-- EOGS_SEED patch(EOGS 原版多种子补丁,diff 形式)
-- Sat-NeRF 现代化环境说明(satnerf310:torch 2.2.2+cu118 + pl1.9.5 + setuptools<81 + pyproj UTM patch)
+| File | Purpose |
+|---|---|
+| `eval_pairs_generic.py` | Region-stratified evaluation of an arbitrary set of registered DSM GeoTIFFs against one AOI (MAE/RMSE/completeness per region; anchored weak proxy; error-top20 diagnostic) |
+| `weak_proxy_lib.py` | Self-contained weak-evidence proxy construction and region metrics |
+| `run_all_evals.py` | Batch driver: EOGS-family full-grid group and cross-method intersection group, evaluated separately |
+| `run_pair_evals.py` | Batch driver: two-system pair grid (EOGS vs. EOGS++ incl. the TSDF one-factor variant) |
+| `analyze_all.py` | Aggregation to per-scene summary tables (markdown/JSON) |
+| `s3_null_control.py` | Seed-swap null control for the error-top20 region (paper Eq. (2)) |
+| `s6_phase0_stats.py` | Multi-temporal evidence-complementarity diagnostics |
+| `gen_latex_tables.py` | `results/` CSVs → the paper's LaTeX tables (variance, paired deltas, ablation, cross-method) |
+| `pair_stats.py` | `results/` CSVs → the published-pair table (two-sample Welch, TSDF one-factor contrast, Holm bookkeeping) |
 
-### 数据引用(不再分发)
-- DFC2019/US3D(IEEE DataPort)、EOGS/EOGS++ 官方 data.zip、Sat-NeRF EarthVision2022 release(数据+ckpt)
+The batch drivers encode the directory layout of our compute node (documented at the top
+of each file); `eval_pairs_generic.py`, `weak_proxy_lib.py`, and both table generators
+are layout-independent.
 
-## 打包 TODO(投稿前)
-- [ ] 从远端收集脚本与 results(tar);模块内绝对路径参数化
-- [ ] 烟测:干净 clone + conda env → 复现 JAX_260 表 1 数字
-- [ ] proxy rasters 决定 Release 附件 vs Zenodo(建议 Zenodo,拿 DOI 放论文)
-- [ ] LICENSE(MIT)+ 引用格式(CITATION.cff)
+### `casestudy/`
+
+Training scripts for every run set referenced in the paper: the six-seed batteries for
+baseline and the evidence-weighted case-study method (`run_q1*.sh`, with the full
+hyperparameter environment), structure-protection ablation (`run_s2_nostruct.sh`),
+original-EOGS multi-seed reruns (`run_m2a_eogsv1.sh`, `run_q1e/q1g_eogsv1_seeds.sh`,
+`eogs_seed.patch`), **unmasked re-registration** of original-EOGS DSMs
+(`eval_dsm_unmasked.py`, `run_unmask_v1.sh` — the released EOGS evaluation code sets
+water pixels to NaN inside DSM registration; see paper Sec. VI), the **TSDF one-factor
+extraction** from existing checkpoints (`run_tsdf_extract.sh`), and the Sat-NeRF
+checkpoint evaluation (`run_m2b_satnerf_ckpt.sh`).
+
+### `results/`
+
+- `out/<AOI>/<AOI>_metrics.csv` — EOGS-family full grid: baseline / weighted / ablation
+  runs × six seeds per scene, all regional metrics.
+- `out_cross/<AOI>/…` — cross-method intersection grid (EOGS, EOGS++, released Sat-NeRF
+  checkpoints), with per-grid coverage in the `_meta.json`.
+- `out_pair/<AOI>/…` — two-system pair grid (EOGS × 6 seeds, EOGS++ × 6 seeds,
+  EOGS++ + TSDF × 6 seeds).
+- `out/<AOI>/weak_proxy_rasters/*.tif` — the anchored weak-evidence proxy rasters
+  (score, top-20% mask, good-view counts), archived for exact reproducibility.
+- `out/s3_null_control.json`, `out/s6_phase0_stats_7scenes.json`,
+  `out/summary_tables.{md,json}`.
+
+Seeds used throughout: `{1337 (framework default; disclosed tuning seed), 2024, 3407,
+5150, 6001, 7777}`.
+
+## Reproduce the paper's tables
+
+```bash
+pip install -r requirements.txt
+python protocol/gen_latex_tables.py   # variance / paired / ablation / cross-method tables
+python protocol/pair_stats.py         # published-pair table + all Sec. VI statistics
+```
+
+Both read only `results/` and write LaTeX fragments to `tables_out/`; `pair_stats.py`
+additionally prints the Welch/Wilcoxon/Holm statistics quoted in the paper.
+
+## Evaluate your own method
+
+`eval_pairs_generic.py --scene <AOI> --methods name=/path/to/registered_dsm.tif …`
+evaluates any registered DSMs on identical regions (the weak-proxy region is anchored
+once per scene and is insensitive to the anchor choice; see paper Sec. III-B). Ground
+truth and imagery are **not redistributed** here; obtain them from the public sources
+below and adjust the data paths at the top of the scripts.
+
+## Data sources (not redistributed)
+
+- DFC2019 / US3D benchmark (JAX AOIs; truth DSMs and semantic classes), IEEE DataPort.
+- IARPA MVS3DM benchmark (IARPA AOIs, San Fernando).
+- Official EOGS / EOGS++ data package and code releases; official Sat-NeRF checkpoints.
+
+## License
+
+MIT — see `LICENSE`. A `CITATION.cff` will be added upon publication.

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """numbers pipeline: evaluation CSVs -> LaTeX table fragments.
-Reads  D:/new/analysis/out/<S>/<S>_metrics.csv  (EOGS-family grid)
-       D:/new/analysis/out_cross/<S>/<S>_metrics.csv (cross-method grid)
-Writes D:/new/latex/tables/*.tex  -- never hand-edit those files.
+Reads  <repo>/results/out/<S>/<S>_metrics.csv  (EOGS-family grid)
+       <repo>/results/out_cross/<S>/<S>_metrics.csv (cross-method grid)
+Writes <repo>/tables_out/*.tex -- never hand-edit those files.
 Rerun after every evaluation refresh.
 """
 import csv
@@ -10,8 +10,8 @@ import re
 import statistics as st
 from pathlib import Path
 
-BASE = Path(r"D:/new/analysis")
-OUTDIR = Path(r"D:/new/latex/tables")
+BASE = Path(__file__).resolve().parents[1] / "results"
+OUTDIR = Path(__file__).resolve().parents[1] / "tables_out"
 OUTDIR.mkdir(parents=True, exist_ok=True)
 SCENES = ["JAX_260", "JAX_214", "JAX_004", "JAX_068", "IARPA_001", "IARPA_002", "IARPA_003"]
 M = {"overall": "overall_mae", "water": "water_cls9_mae", "building": "building_cls6_mae",
