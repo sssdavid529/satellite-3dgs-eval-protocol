@@ -1,0 +1,30 @@
+{
+  "anchor": "phase1_eogsplus_rawrpc_JAX260_pan_3PAN_5000",
+  "error_top20_p80_threshold": 2.788569259643555,
+  "common_valid_pixels": 190517,
+  "weak_proxy": {
+    "scene": "JAX_260",
+    "georef_source": "JAX_260_DSM.txt metadata",
+    "affine_models": "/root/autodl-tmp/eogs/EOGS2/scripts/dataset_creation/affine_models/JAX_260_pan_rpc_raw/affine_models.json",
+    "pan_images": "/root/autodl-tmp/eogs/EOGS2/data/images/pan/JAX_260",
+    "num_pan_images_used": 17,
+    "texture_quantile": 60.0,
+    "brightness_quantile": 20.0,
+    "texture_threshold": 0.12985700070858003,
+    "brightness_threshold": 0.014647174440324307,
+    "weak_proxy_rule": "top 20% of 0.60*(1-good_view_ratio)+0.25*(1-mean_texture)+0.15*(1-median_brightness), image-derived only",
+    "weak_proxy_threshold_p80": 0.9130883693695069,
+    "weak_proxy_area_ratio_valid_proxy": 0.20000076293945312
+  },
+  "methods": {
+    "baseline_s1337": "phase1_eogsplus_rawrpc_JAX260_pan_3PAN_5000",
+    "eogsv1": "/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_JAX_260/JAX_260_rdsm.tif",
+    "eogsv1_s2024": "/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_JAX_260_s2024/JAX_260_rdsm.tif",
+    "eogsv1_s3407": "/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_JAX_260_s3407/JAX_260_rdsm.tif",
+    "eogsv1_s5150": "/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_JAX_260_s5150/JAX_260_rdsm.tif",
+    "eogsv1_s6001": "/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_JAX_260_s6001/JAX_260_rdsm.tif",
+    "eogsv1_s7777": "/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_JAX_260_s7777/JAX_260_rdsm.tif",
+    "satnerf_ds": "/root/autodl-tmp/satnerf/m2b_out/registered/JAX_260_Sat-NeRF_DS/JAX_260_rdsm.tif",
+    "satnerf": "/root/autodl-tmp/satnerf/m2b_out/registered/JAX_260_Sat-NeRF/JAX_260_rdsm.tif"
+  }
+}

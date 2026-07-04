@@ -1,0 +1,38 @@
+{
+  "anchor": "phase1_eogsplus_rawrpc_JAX260_pan_3PAN_5000",
+  "error_top20_p80_threshold": 2.1569019317626954,
+  "common_valid_pixels": 258570,
+  "weak_proxy": {
+    "scene": "JAX_260",
+    "georef_source": "JAX_260_DSM.txt metadata",
+    "affine_models": "/root/autodl-tmp/eogs/EOGS2/scripts/dataset_creation/affine_models/JAX_260_pan_rpc_raw/affine_models.json",
+    "pan_images": "/root/autodl-tmp/eogs/EOGS2/data/images/pan/JAX_260",
+    "num_pan_images_used": 17,
+    "texture_quantile": 60.0,
+    "brightness_quantile": 20.0,
+    "texture_threshold": 0.12985700070858003,
+    "brightness_threshold": 0.014647174440324307,
+    "weak_proxy_rule": "top 20% of 0.60*(1-good_view_ratio)+0.25*(1-mean_texture)+0.15*(1-median_brightness), image-derived only",
+    "weak_proxy_threshold_p80": 0.9130883693695069,
+    "weak_proxy_area_ratio_valid_proxy": 0.20000076293945312
+  },
+  "methods": {
+    "baseline_s1337": "phase1_eogsplus_rawrpc_JAX260_pan_3PAN_5000",
+    "ours_s1337": "phase1b_structure_protected_JAX260_pan_3PAN_5000",
+    "baseline_s2024": "q1_baseline_s2024_JAX260_pan_3PAN_5000",
+    "ours_s2024": "q1_ours_s2024_JAX260_pan_3PAN_5000",
+    "baseline_s3407": "q1_baseline_s3407_JAX260_pan_3PAN_5000",
+    "ours_s3407": "q1_ours_s3407_JAX260_pan_3PAN_5000",
+    "baseline_s5150": "q1_baseline_s5150_JAX260_pan_3PAN_5000",
+    "ours_s5150": "q1_ours_s5150_JAX260_pan_3PAN_5000",
+    "baseline_s6001": "q1_baseline_s6001_JAX260_pan_3PAN_5000",
+    "ours_s6001": "q1_ours_s6001_JAX260_pan_3PAN_5000",
+    "baseline_s7777": "q1_baseline_s7777_JAX260_pan_3PAN_5000",
+    "ours_s7777": "q1_ours_s7777_JAX260_pan_3PAN_5000",
+    "nostruct_s1337": "s2_nostruct_JAX260_pan_3PAN_5000",
+    "b15k_s1337": "q1_baseline_s1337_JAX260_pan_3PAN_15000",
+    "o15k_s1337": "q1_ours_s1337_JAX260_pan_3PAN_15000",
+    "b15k_s2024": "q1_baseline_s2024_JAX260_pan_3PAN_15000",
+    "o15k_s2024": "q1_ours_s2024_JAX260_pan_3PAN_15000"
+  }
+}

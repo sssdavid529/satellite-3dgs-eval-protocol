@@ -78,7 +78,7 @@ def main() -> None:
             m2a = cands[0] if cands else m2a
         if m2a.exists():
             cross.append(f"eogsv1={m2a}")
-        for k in (2024, 3407):
+        for k in (2024, 3407, 5150, 6001, 7777):
             p = Path(f"/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_{scene}_s{k}/{scene}_rdsm.tif")
             if p.exists():
                 cross.append(f"eogsv1_s{k}={p}")

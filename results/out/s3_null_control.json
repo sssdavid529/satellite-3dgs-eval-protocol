@@ -39,82 +39,97 @@
   },
   {
     "scene": "JAX_004",
-    "n_seeds": 3,
-    "null_mean_drop": -0.5779,
-    "null_std": 0.2852,
+    "n_seeds": 6,
+    "null_mean_drop": -0.4771,
+    "null_std": 0.3626,
     "null_min_max": [
-      -0.9954,
-      -0.3354
+      -1.1386,
+      -0.0418
     ],
-    "method_same_seed_drop_mean": -0.1254,
+    "method_same_seed_drop_mean": -0.2965,
     "method_drops": [
       -0.0961,
       -0.089,
-      -0.1912
+      -0.1912,
+      -0.0891,
+      -0.2021,
+      -1.1116
     ]
   },
   {
     "scene": "JAX_068",
-    "n_seeds": 3,
-    "null_mean_drop": -0.1273,
-    "null_std": 0.0979,
+    "n_seeds": 6,
+    "null_mean_drop": -0.1412,
+    "null_std": 0.0761,
     "null_min_max": [
-      -0.2528,
+      -0.2816,
       -0.0027
     ],
-    "method_same_seed_drop_mean": -0.1475,
+    "method_same_seed_drop_mean": -0.1113,
     "method_drops": [
       -0.2345,
       -0.1647,
-      -0.0432
+      -0.0432,
+      -0.1356,
+      -0.0602,
+      -0.0293
     ]
   },
   {
     "scene": "IARPA_001",
-    "n_seeds": 3,
-    "null_mean_drop": -0.2687,
-    "null_std": 0.1387,
+    "n_seeds": 6,
+    "null_mean_drop": -0.2872,
+    "null_std": 0.1837,
     "null_min_max": [
-      -0.4758,
-      -0.0853
+      -0.6766,
+      -0.0171
     ],
-    "method_same_seed_drop_mean": -0.2152,
+    "method_same_seed_drop_mean": -0.2408,
     "method_drops": [
       -0.1875,
       -0.1344,
-      -0.3237
+      -0.3237,
+      -0.1998,
+      -0.1985,
+      -0.4009
     ]
   },
   {
     "scene": "IARPA_002",
-    "n_seeds": 3,
-    "null_mean_drop": -0.2334,
-    "null_std": 0.1515,
+    "n_seeds": 6,
+    "null_mean_drop": -0.7742,
+    "null_std": 1.1477,
     "null_min_max": [
-      -0.4673,
-      -0.0448
+      -3.4849,
+      -0.0094
     ],
-    "method_same_seed_drop_mean": -0.2003,
+    "method_same_seed_drop_mean": -0.7568,
     "method_drops": [
       -0.2068,
       -0.219,
-      -0.175
+      -0.175,
+      -3.2906,
+      -0.461,
+      -0.1882
     ]
   },
   {
     "scene": "IARPA_003",
-    "n_seeds": 3,
-    "null_mean_drop": -0.1611,
-    "null_std": 0.1009,
+    "n_seeds": 6,
+    "null_mean_drop": -0.1946,
+    "null_std": 0.106,
     "null_min_max": [
-      -0.2812,
-      0.0014
+      -0.4273,
+      0.0013
     ],
-    "method_same_seed_drop_mean": -0.1875,
+    "method_same_seed_drop_mean": -0.1401,
     "method_drops": [
-      -0.2282,
-      -0.2163,
-      -0.1179
+      -0.2264,
+      -0.2161,
+      -0.1169,
+      0.1037,
+      -0.3187,
+      -0.0663
     ]
   }
 ]

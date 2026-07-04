@@ -1,0 +1,34 @@
+{
+  "anchor": "phase1_eogsplus_rawrpc_IARPA003_pan_3PAN_5000",
+  "error_top20_p80_threshold": 3.175552368164073,
+  "common_valid_pixels": 720800,
+  "weak_proxy": {
+    "scene": "IARPA_003",
+    "georef_source": "GeoTIFF metadata",
+    "affine_models": "/root/autodl-tmp/eogs/EOGS2/scripts/dataset_creation/affine_models/IARPA_003_pan_rpc_raw/affine_models.json",
+    "pan_images": "/root/autodl-tmp/eogs/EOGS2/data/images/pan/IARPA_003",
+    "num_pan_images_used": 23,
+    "texture_quantile": 60.0,
+    "brightness_quantile": 20.0,
+    "texture_threshold": 0.16295680403709412,
+    "brightness_threshold": 0.06639965474605561,
+    "weak_proxy_rule": "top 20% of 0.60*(1-good_view_ratio)+0.25*(1-mean_texture)+0.15*(1-median_brightness), image-derived only",
+    "weak_proxy_threshold_p80": 0.823031222820282,
+    "weak_proxy_area_ratio_valid_proxy": 0.20000055147844478
+  },
+  "methods": {
+    "baseline_s1337": "phase1_eogsplus_rawrpc_IARPA003_pan_3PAN_5000",
+    "ours_s1337": "phase3_phase1b_default_IARPA003_pan_3PAN_5000",
+    "baseline_s2024": "q1_baseline_s2024_IARPA003_pan_3PAN_5000",
+    "ours_s2024": "q1_ours_s2024_IARPA003_pan_3PAN_5000",
+    "baseline_s3407": "q1_baseline_s3407_IARPA003_pan_3PAN_5000",
+    "ours_s3407": "q1_ours_s3407_IARPA003_pan_3PAN_5000",
+    "baseline_s5150": "q1_baseline_s5150_IARPA003_pan_3PAN_5000",
+    "ours_s5150": "q1_ours_s5150_IARPA003_pan_3PAN_5000",
+    "baseline_s6001": "q1_baseline_s6001_IARPA003_pan_3PAN_5000",
+    "ours_s6001": "q1_ours_s6001_IARPA003_pan_3PAN_5000",
+    "baseline_s7777": "q1_baseline_s7777_IARPA003_pan_3PAN_5000",
+    "ours_s7777": "q1_ours_s7777_IARPA003_pan_3PAN_5000",
+    "nostruct_s1337": "s2_nostruct_IARPA003_pan_3PAN_5000"
+  }
+}
