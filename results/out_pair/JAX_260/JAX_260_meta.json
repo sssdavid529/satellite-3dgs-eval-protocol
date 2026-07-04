@@ -1,7 +1,7 @@
 {
   "anchor": "phase1_eogsplus_rawrpc_JAX260_pan_3PAN_5000",
-  "error_top20_p80_threshold": 2.7866966247558596,
-  "common_valid_pixels": 191418,
+  "error_top20_p80_threshold": 2.1569019317626954,
+  "common_valid_pixels": 258570,
   "weak_proxy": {
     "scene": "JAX_260",
     "georef_source": "JAX_260_DSM.txt metadata",
@@ -23,6 +23,12 @@
     "eogspp_s5150": "q1_baseline_s5150_JAX260_pan_3PAN_5000",
     "eogspp_s6001": "q1_baseline_s6001_JAX260_pan_3PAN_5000",
     "eogspp_s7777": "q1_baseline_s7777_JAX260_pan_3PAN_5000",
+    "eogspp_tsdf_s1337": "/root/autodl-tmp/eogs/EOGS2/output/phase1_eogsplus_rawrpc_JAX260_pan_3PAN_5000/test_opNone/ours_5000/tsdf/JAX_260_rdsm.tif",
+    "eogspp_tsdf_s2024": "/root/autodl-tmp/eogs/EOGS2/output/q1_baseline_s2024_JAX260_pan_3PAN_5000/test_opNone/ours_5000/tsdf/JAX_260_rdsm.tif",
+    "eogspp_tsdf_s3407": "/root/autodl-tmp/eogs/EOGS2/output/q1_baseline_s3407_JAX260_pan_3PAN_5000/test_opNone/ours_5000/tsdf/JAX_260_rdsm.tif",
+    "eogspp_tsdf_s5150": "/root/autodl-tmp/eogs/EOGS2/output/q1_baseline_s5150_JAX260_pan_3PAN_5000/test_opNone/ours_5000/tsdf/JAX_260_rdsm.tif",
+    "eogspp_tsdf_s6001": "/root/autodl-tmp/eogs/EOGS2/output/q1_baseline_s6001_JAX260_pan_3PAN_5000/test_opNone/ours_5000/tsdf/JAX_260_rdsm.tif",
+    "eogspp_tsdf_s7777": "/root/autodl-tmp/eogs/EOGS2/output/q1_baseline_s7777_JAX260_pan_3PAN_5000/test_opNone/ours_5000/tsdf/JAX_260_rdsm.tif",
     "eogsv1_default": "/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_JAX_260/JAX_260_rdsm.tif",
     "eogsv1_s2024": "/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_JAX_260_s2024/JAX_260_rdsm.tif",
     "eogsv1_s3407": "/root/autodl-tmp/eogs_v1/output/m2a_eogsv1_JAX_260_s3407/JAX_260_rdsm.tif",

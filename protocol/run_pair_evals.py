@@ -29,8 +29,13 @@ def v1path(scene, seed=None):
 def main():
     for scene in SCENES:
         sh = scene.replace("_", "")
-        methods = [f"eogspp_s1337=phase1_eogsplus_rawrpc_{sh}_pan_3PAN_5000"]
-        methods += [f"eogspp_s{k}=q1_baseline_s{k}_{sh}_pan_3PAN_5000" for k in SEEDS]
+        pp_exps = {1337: f"phase1_eogsplus_rawrpc_{sh}_pan_3PAN_5000"}
+        pp_exps.update({k: f"q1_baseline_s{k}_{sh}_pan_3PAN_5000" for k in SEEDS})
+        methods = [f"eogspp_s{k}={e}" for k, e in pp_exps.items()]
+        for k, e in pp_exps.items():
+            t = ROOT / "EOGS2/output" / e / "test_opNone/ours_5000/tsdf" / f"{scene}_rdsm.tif"
+            if t.exists():
+                methods.append(f"eogspp_tsdf_s{k}={t}")
         p0 = v1path(scene)
         if p0.exists():
             methods.append(f"eogsv1_default={p0}")

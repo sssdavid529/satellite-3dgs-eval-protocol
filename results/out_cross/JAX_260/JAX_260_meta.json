@@ -1,7 +1,7 @@
 {
   "anchor": "phase1_eogsplus_rawrpc_JAX260_pan_3PAN_5000",
-  "error_top20_p80_threshold": 2.788569259643555,
-  "common_valid_pixels": 190517,
+  "error_top20_p80_threshold": 2.790788269042969,
+  "common_valid_pixels": 190883,
   "weak_proxy": {
     "scene": "JAX_260",
     "georef_source": "JAX_260_DSM.txt metadata",

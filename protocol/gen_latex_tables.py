@@ -18,14 +18,20 @@ M = {"overall": "overall_mae", "water": "water_cls9_mae", "building": "building_
      "weak": "weak_proxy_top20_mae", "err20": "phase0_error_top20_eval_only_mae"}
 
 
+PIX = {k: v.replace("_mae", "_pixels") for k, v in M.items()}
+
+
 def load(path):
     if not path.exists():
         return {}
     rows = {}
     with open(path, newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            rows[r["method"]] = {k: (float(r[v]) if r.get(v) not in (None, "", "None") else None)
-                                 for k, v in M.items()}
+            d = {k: (float(r[v]) if r.get(v) not in (None, "", "None") else None)
+                 for k, v in M.items()}
+            d["_pix"] = {k: (int(float(r[v])) if r.get(v) not in (None, "", "None") else 0)
+                         for k, v in PIX.items()}
+            rows[r["method"]] = d
     return rows
 
 
@@ -121,26 +127,29 @@ def main():
          r"AOI & method & overall & water & building & weak & err.top20 \\", r"\midrule"]
     NAME = {"baseline_s1337": "EOGS++ (s1337)", "eogsv1": "EOGS (default seed)",
             "satnerf_ds": "Sat-NeRF+DS ckpt", "satnerf": "Sat-NeRF ckpt"}
+    MIN_PX = 500  # region cells on the intersection grid need >=500 valid pixels
+
+    def f3thr(v, px):
+        return "---" if (v is None or px < MIN_PX) else f"{v:.3f}"
+
     for s in SCENES:
         if not cross[s]:
             continue
+        # intersection-grid coverage relative to the EOGS-family grid
+        fam_px = data[s].get("baseline_s1337", {}).get("_pix", {}).get("overall", 0)
+        any_cross = next(iter(cross[s].values()))
+        cov = (100.0 * any_cross["_pix"]["overall"] / fam_px) if fam_px else 0.0
         first = True
         for meth in ("eogsv1", "baseline_s1337", "satnerf_ds", "satnerf"):
             if meth not in cross[s]:
                 continue
             v = cross[s][meth]
-            scene_cell = tex_escape(s) if first else ""
+            px = v["_pix"]
+            scene_cell = f"{tex_escape(s)}\\,({cov:.0f}\\%)" if first else ""
             first = False
-            L.append(f"{scene_cell} & {NAME[meth]} & {f3(v['overall'])} & {f3(v['water'])} & "
-                     f"{f3(v['building'])} & {f3(v['weak'])} & {f3(v['err20'])} \\\\")
-        v1fam = {k: v for k, v in cross[s].items() if re.fullmatch(r"eogsv1(_s\d+)?", k)}
-        if len(v1fam) > 1:
-            cells = []
-            for key in ("overall", "water", "building", "weak", "err20"):
-                vals = [v[key] for v in v1fam.values() if v[key] is not None]
-                cells.append("---" if not vals else
-                             f"{st.mean(vals):.3f}$\\pm${(st.stdev(vals) if len(vals) > 1 else 0):.3f}")
-            L.append(f" & EOGS ({len(v1fam)} seeds) & " + " & ".join(cells) + r" \\")
+            L.append(f"{scene_cell} & {NAME[meth]} & {f3thr(v['overall'], px['overall'])} & "
+                     f"{f3thr(v['water'], px['water'])} & {f3thr(v['building'], px['building'])} & "
+                     f"{f3thr(v['weak'], px['weak'])} & {f3thr(v['err20'], px['err20'])} \\\\")
         fam = {k: v for k, v in data[s].items() if re.fullmatch(r"baseline_s\d+", k)}
         if fam:
             cells = []
