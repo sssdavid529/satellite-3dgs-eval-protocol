@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this evaluation protocol, tooling, or the per-run results, please cite the paper below."
+title: "Unmasked Multi-Seed Evaluation Protocol for Satellite 3DGS (companion release)"
+authors:
+  - family-names: "Song"
+    given-names: "Zhongyu"
+repository-code: "https://github.com/sssdavid529/satellite-3dgs-eval-protocol"
+license: MIT
+preferred-citation:
+  type: article
+  title: "On the Reliability of DSM Improvements in Satellite 3D Gaussian Splatting: An Unmasked Multi-Seed Evaluation Protocol for Weak-Evidence Regions"
+  authors:
+    - family-names: "Song"
+      given-names: "Zhongyu"
+  year: 2026
+  notes: "Under review."

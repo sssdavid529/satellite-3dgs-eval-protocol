@@ -93,4 +93,4 @@ below and adjust the data paths at the top of the scripts.
 
 ## License
 
-MIT — see `LICENSE`. A `CITATION.cff` will be added upon publication.
+MIT — see `LICENSE`. Citation information: `CITATION.cff`.
