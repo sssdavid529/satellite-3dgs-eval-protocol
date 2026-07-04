@@ -17,7 +17,7 @@ An Unmasked Multi-Seed Evaluation Protocol for Weak-Evidence Regions* (under rev
 | `s3_null_control.py` | seed-swap null 对照(式 (2)) | 远端 eval_tools |
 | `s6_phase0_stats.py` | 多时相互补诊断统计 | 远端 eval_tools |
 | `gen_latex_tables.py` | CSV → 论文 LaTeX 表(数字溯源) | 本地 analysis |
-| 依赖说明 | eval 复用 EOGS2 phase3 模块的 `compute_weak_proxy/region_metrics` — 打包时把该模块拷入并去除绝对路径 | ⚠️ 打包前处理 |
+| `weak_proxy_lib.py` | `compute_weak_proxy/region_metrics`(自 EOGS2 phase3 模块拷入,自包含) | 已打包 |
 
 ### `results/` — 全部逐种子指标
 - `out/<AOI>/<AOI>_metrics.csv` × 7(EOGS 系全网格:baseline/ours/nostruct × seeds,含 rmse/comp1m)
